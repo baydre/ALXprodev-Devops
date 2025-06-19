@@ -1,5 +1,4 @@
 #!/bin/bash
-# filepath: Advanced_shell/data_extraction_automation-0x01/parse_pikachu
 
 # Extract fields using jq
 name=$(jq -r '.name' data.json | sed 's/.*/\u&/')
@@ -7,5 +6,5 @@ height=$(jq -r '.height' data.json | awk '{printf "%.1f", $1/10}')
 weight=$(jq -r '.weight' data.json | awk '{printf "%.0f", $1/10}')
 type=$(jq -r '.types[0].type.name' data.json | sed 's/.*/\u&/')
 
-# Output in required format with actual values
-echo "${name} is of type ${type}, weighs ${weight}kg, and is ${height}m tall."
+# Output in required format
+echo "$name is of type $type, weighs ${weight}kg, and is ${height}m tall."
