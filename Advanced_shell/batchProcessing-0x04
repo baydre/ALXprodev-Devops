@@ -2,6 +2,7 @@
 
 POKEMONS=(bulbasaur ivysaur venusaur charmander charmeleon)
 mkdir -p pokemon_data
+PIDS=()
 
 for name in "${POKEMONS[@]}"
 do
@@ -14,7 +15,17 @@ do
       echo "Failed to fetch data for $name ❌"
     fi
   ) &
+  PIDS+=($!)
 done
 
+# List background jobs
+echo "Current background jobs:"
+jobs
+
+# Example: Optionally kill a job (uncomment to use)
+# echo "Killing the first background job (for demonstration)..."
+# kill ${PIDS[0]}
+
+# Wait for all background jobs to finish
 wait
 echo "All fetch operations completed."
